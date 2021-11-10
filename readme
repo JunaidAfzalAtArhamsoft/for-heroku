@@ -1,0 +1,4 @@
+After Running server with python manage.py runserver.
+goto localhost/ManageTask/   ---> main page
+Here you can register yourself or login.
+than after login you moved to dashboard, where you can view you tasks, delete tasks etc.

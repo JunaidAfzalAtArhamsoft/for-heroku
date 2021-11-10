@@ -31,7 +31,7 @@ class PersonLoginView(LoginView):
     template_name = 'ManageTask/login.html'
 
     def get_redirect_url(self):
-        return  '/ManageTask/login/'
+        return '/ManageTask/dashboard/'
 
 
 class PersonLogoutView(LogoutView):
@@ -46,7 +46,7 @@ class TaskCreateView(CreateView):
 
     template_name = "ManageTask/add_task.html"
     form_class = TaskCreateForm
-    success_url = '/ManageTask/add-task/'
+    success_url = '/ManageTask/tasks/'
 
     def form_valid(self, form):
         """

@@ -1,3 +1,6 @@
+ #Setup
+
+
 After Running server with python manage.py runserver.
 goto localhost/ManageTask/   ---> main page
 Here you can register yourself or login.

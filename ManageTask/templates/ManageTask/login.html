@@ -1,0 +1,19 @@
+{% extends 'ManageTask/register.html' %}
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+{% block content %}
+
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <table class="table" style="border:1px solid silver;">
+                    {{form}}
+            </table>
+            <button type="submit" class="btn btn-success">LogIn</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}

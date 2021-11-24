@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
-from django.views.generic.edit import FormView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
@@ -11,6 +10,9 @@ from .models import Person, Task
 
 
 class MainPageView(TemplateView):
+    """
+    Show Main Page
+    """
     template_name = 'ManageTask/main_page.html'
 
     def get(self, request, *args, **kwargs):
@@ -35,6 +37,9 @@ class PersonLoginView(LoginView):
 
 
 class PersonLogoutView(LogoutView):
+    """
+    Logout the user from session and returns to home page
+    """
     next_page = '/ManageTask/'
 
 
@@ -76,6 +81,9 @@ class TaskView(ListView):
     model = Task
 
     def get_queryset(self):
+        """
+        Message: Returns all task objects
+        """
         user = self.request.user
         print(user)
         user = Person.objects.filter(username=user)
@@ -85,6 +93,14 @@ class TaskView(ListView):
         return task
 
     def get(self, request, *args, **kwargs):
+        """
+        Message: Returns Completed and Pending tasks
+        Parameters:
+            self:
+            request: request from user to view tasks
+        Returns:
+            Template containing information data
+        """
         # if not validate_request(request):
         #     return HttpResponseForbidden()
         # else:
@@ -104,10 +120,16 @@ class TaskView(ListView):
 
 
 class DashboardView(TemplateView):
+    """
+    Show dashboard From where user can Goto Task List, add task or logout
+    """
     template_name = 'ManageTask/dashboard.html'
 
 
 class UpdateTaskView(UpdateView):
+    """
+    Update Task by taking its id
+    """
     model = Task
     fields = ['task_title', 'task_description', 'task_category', 'is_complete']
     template_name = 'ManageTask/update_task.html'
@@ -115,11 +137,17 @@ class UpdateTaskView(UpdateView):
 
 
 class SpecificTaskView(DetailView):
+    """
+    Show Details of Specific Task by taking its id
+    """
     model = Task
     template_name = 'ManageTask/specific_task.html'
 
 
 class DeleteTaskView(DeleteView):
+    """
+    Delete the task by its primary key
+    """
     model = Task
     context_object_name = 'task'
     template_name = 'ManageTask/delete_task.html'
